@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isGrounded;
     [SerializeField] private float gravity = -9.81f;
 
-    private float airSpeedDegredation = 0.5f;
+    //private float airSpeedDegredation = 0.5f;
 
     public float jumpforce = 10.0f;
 
