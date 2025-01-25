@@ -2,24 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BubblePlatform : MonoBehaviour
 {
-    public float uptime;
+    [SerializeField] private bool wasJumpedOn = false;
+
+    private Vector3 scaleChange = new Vector3(0.05f, 0.05f, 0.05f);
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision detected");
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Player has collided with the bubble platform");
-            StartCoroutine(JumpOnBubble());
+            wasJumpedOn = true;
         }
     }
 
-    IEnumerator JumpOnBubble()
+    void FixedUpdate()
     {
-        yield return new WaitForSeconds(uptime);
-        Destroy(gameObject);
+        if (wasJumpedOn)
+        {
+            gameObject.transform.localScale -= scaleChange;
+        }
+
+        if (gameObject.transform.localScale.x <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
