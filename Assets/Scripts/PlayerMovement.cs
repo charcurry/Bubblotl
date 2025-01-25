@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,5 +27,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnMove(InputValue value)
+    {
+        movementX = value.Get<float>();
     }
 }
